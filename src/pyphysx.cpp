@@ -148,6 +148,9 @@ PYBIND11_MODULE(_pyphysx, m) {
             .def("add_actor", &Scene::add_actor,
                  arg("actor")
             )
+            .def("remove_actor", &Scene::remove_actor,
+                 arg("actor")
+            )
             .def("get_static_rigid_actors", &Scene::get_static_rigid_actors)
             .def("get_dynamic_rigid_actors", &Scene::get_dynamic_rigid_actors)
             .def("add_aggregate", &Scene::add_aggregate,
