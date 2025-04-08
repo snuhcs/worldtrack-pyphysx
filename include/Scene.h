@@ -25,7 +25,7 @@ public:
         sceneDesc.cpuDispatcher = Physics::get().dispatcher;
         sceneDesc.cudaContextManager = Physics::get().cuda_context_manager;
         sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
-        sceneDesc.gravity = physx::PxVec3(0.0f, 0.0f, -9.81f);
+        sceneDesc.gravity = physx::PxVec3(0.0f, 9.81f, 0.0f);
         for (const auto &flag : scene_flags) {
             sceneDesc.flags |= flag;
         }
