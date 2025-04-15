@@ -145,6 +145,7 @@ PYBIND11_MODULE(_pyphysx, m) {
             .def("simulate", &Scene::simulate,
                  arg("dt") = 1. / 60.
             )
+            .def("get_collision_data", &Scene::get_collision_data)
             .def("add_actor", &Scene::add_actor,
                  arg("actor")
             )
@@ -158,6 +159,14 @@ PYBIND11_MODULE(_pyphysx, m) {
             )
             .def("get_aggregates", &Scene::get_aggregates)
             .def_readwrite("simulation_time", &Scene::simulation_time);
+
+    py::class_<CollisionData>(m, "CollisionData")
+            .def_readonly("actor1", &CollisionData::actor1)
+            .def_readonly("actor2", &CollisionData::actor2)
+            .def_readonly("position", &CollisionData::position)
+            .def_readonly("normal", &CollisionData::normal)
+            .def_readonly("impulse_magnitude", &CollisionData::impulse_magnitude)
+            .def("involves_actor", &CollisionData::involves_actor, arg("actor"));
 
     py::class_<Aggregate>(m, "Aggregate")
             .def(py::init<size_t, bool>(),
